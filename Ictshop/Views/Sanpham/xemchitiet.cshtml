@@ -1,0 +1,170 @@
+﻿@using Ictshop.Models
+@model dynamic
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">CHI TIẾT SẢN PHẨM</h2>
+    <div class="row">
+        <!-- Cột trái: Ảnh, Tên, Giá, Mô tả, Mua hàng, Tăng Giảm Số Lượng -->
+        <div class="col-md-5 text-center d-flex flex-column align-items-center">
+            <img src="@Url.Content("~" + @Model.Anhbia)"
+                 class="img-fluid"
+                 alt="@Model.Tensp"
+                 style="width: 100%; max-width: 500px; height: auto; object-fit: cover;">
+            <h3 class="mt-3" style="font-size: 3rem; font-weight: bold">@Model.Tensp</h3>
+            <h3 class="mt-3 text-danger" style="font-size: 3rem; font-weight: bold;">Giá: @String.Format("{0:0,0}", @Model.Giatien) VND</h3>
+            <p class="text-muted mt-3 px-3"
+               style="font-size: 2rem; line-height: 1.5; max-width: 90%; text-align: justify; text-align-last: center;">@Model.Mota</p>
+
+            @using (Html.BeginForm("ThemGioHang", "GioHang", FormMethod.Post))
+            {
+                <input type="hidden" name="iMasp" value="@Model.Masp" />
+                <input type="hidden" name="strURL" value="@Request.Url.ToString()" />
+
+                <div class="d-flex flex-column align-items-center mt-3">
+                    <div class="input-group d-flex justify-content-center align-items-center px-4 py-2 mt-2"
+                         style="max-width: 250px;">
+                        <button type="button" class="btn btn-outline-secondary"
+                                style="font-size: 2rem; padding: 10px 20px;" onclick="decreaseQuantity()">
+                            −
+                        </button>
+                        <input type="number" id="quantity" name="quantity" class="form-control text-center"
+                               style="max-width: 100px; font-size: 2rem;" value="1" min="1" max="99999">
+                        <button type="button" class="btn btn-outline-secondary"
+                                style="font-size: 2rem; padding: 10px 20px;" onclick="increaseQuantity()">
+                            +
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary px-5 py-3 mt-3" style="font-size: 2rem; font-weight: bold; background-color: #5cb85c; border-color: #5cb85c;">🛒 Mua hàng</button>
+            }
+        </div>
+
+        <!-- Cột phải: Thông số kỹ thuật -->
+        <div class="col-md-7">
+            <h4 class="mb-3 font-weight-bold" style="font-size: 2.2rem;">Thông số kỹ thuật</h4>
+            <table class="table table-bordered" style="font-size: 1.8rem;">
+                <tbody>
+                    @if (Model.NhomSanPham != null && Model.NhomSanPham.ToString().ToLowerInvariant().Contains("laptoppc"))
+                    {
+                        if (Model.LoaiSanPham != null && Model.LoaiSanPham.ToString().ToLowerInvariant().Contains("laptop"))
+                        { //Laptop
+                            <tr><th>Màn hình</th><td>@Model.Manhinh</td></tr>
+                            <tr><th>CPU</th><td>@Model.ChipCPU</td></tr>
+                            <tr><th>RAM</th><td>@Model.RAM</td></tr>
+                            <tr><th>Dung lượng</th><td>@Model.Dungluong</td></tr>
+                            <tr><th>GPU</th><td>@Model.GPU</td></tr>
+                            <tr><th>Pin</th><td>@Model.Pin</td></tr>
+                            <tr><th>Kết nối</th><td>@Model.Ketnoi</td></tr>
+                            <tr><th>Trọng lượng</th><td>@Model.Trongluong</td></tr>
+                            <tr><th>Kích thước</th><td>@Model.Kichthuoc</td></tr>
+                            <tr><th>Hãng</th><td>@Model.Tenhangsx</td></tr>
+                            <tr><th>Hệ điều hành</th><td>@Model.Tenhedieuhanh</td></tr>
+                            <tr><th>Thông tin khác</th><td>@Model.Thongtinkhac</td></tr>
+                            <tr><th>Nhóm sản phẩm</th><td>@Model.NhomSanPham</td></tr>
+                            <tr><th>Loại sản phẩm</th><td>@Model.LoaiSanPham</td></tr>
+                        }
+                        else if (Model.LoaiSanPham != null && Model.LoaiSanPham.ToString().ToLowerInvariant().Contains("pc"))
+                        { //PC
+                            <tr><th>Mainboard</th><td>@Model.Mainboard</td></tr>
+                            <tr><th>CPU</th><td>@Model.ChipCPU</td></tr>
+                            <tr><th>RAM</th><td>@Model.RAM</td></tr>
+                            <tr><th>Dung lượng</th><td>@Model.Dungluong</td></tr>
+                            <tr><th>GPU</th><td>@Model.GPU</td></tr>
+                            <tr><th>Nguồn</th><td>@Model.Nguon</td></tr>
+                            <tr><th>Tản nhiệt</th><td>@Model.Tannhiet</td></tr>
+                            <tr><th>Case</th><td>@Model.LoaiCase</td></tr>
+                            <tr><th>Kết nối</th><td>@Model.Ketnoi</td></tr>
+                            <tr><th>Hãng</th><td>@Model.Tenhangsx</td></tr>
+                            <tr><th>Nhóm sản phẩm</th><td>@Model.NhomSanPham</td></tr>
+                            <tr><th>Loại sản phẩm</th><td>@Model.LoaiSanPham</td></tr>
+                        }
+                    }
+                    else if (Model.NhomSanPham != null && Model.NhomSanPham.ToString().ToLowerInvariant().Contains("phukien"))
+                    { //PhuKien
+                        <tr><th>Nhóm sản phẩm</th><td>@Model.NhomSanPham</td></tr>
+                        <tr><th>Loại phụ kiện</th><td>@Model.LoaiSanPham</td></tr>
+                        <tr><th>Tương thích</th><td>@Model.Tuongthich</td></tr>
+                        <tr><th>Loại kết nối</th><td>@Model.LoaiKetNoi</td></tr>
+                        <tr><th>Công suất</th><td>@Model.CongSuat</td></tr>
+                        <tr><th>Kích cỡ</th><td>@Model.KichCo</td></tr>
+                        <tr><th>Màu sắc</th><td>@Model.MauSac</td></tr>
+                        <tr><th>Hãng</th><td>@Model.Tenhangsx</td></tr>
+                        <tr><th>Thông tin khác</th><td>@Model.Thongtinkhac</td></tr>
+                    }
+                    else if (Model.NhomSanPham != null && Model.NhomSanPham.ToString().ToLowerInvariant().Contains("setuppc"))
+                    { //SetupPC
+                        <tr><th>Nhóm sản phẩm</th><td>@Model.NhomSanPham</td></tr>
+                        <tr><th>Loại sản phẩm</th><td>@Model.LoaiSanPham</td></tr>
+                        <tr><th>Kích cỡ</th><td>@Model.KichCo</td></tr>
+                        <tr><th>Chất liệu</th><td>@Model.Chatlieu</td></tr>
+                        <tr><th>Trọng lượng</th><td>@Model.Trongluong</td></tr>
+                        <tr><th>Kích thước</th><td>@Model.Kichthuoc</td></tr>
+                        <tr><th>Màu sắc</th><td>@Model.MauSac</td></tr>
+                        <tr><th>Hãng</th><td>@Model.Tenhangsx</td></tr>
+                    }
+                    else if (Model.NhomSanPham != null && Model.NhomSanPham.ToString().ToLowerInvariant().Contains("phonetablet"))
+                    {
+                        if (Model.LoaiSanPham != null && Model.LoaiSanPham.ToString().ToLowerInvariant().Contains("phone"))
+                        { //Phone
+                            <tr><th>Màn hình</th><td>@Model.Manhinh</td></tr>
+                            <tr><th>Camera</th><td>@Model.Camera</td></tr>
+                            <tr><th>Pin</th><td>@Model.Pin</td></tr>
+                            <tr><th>Chip CPU</th><td>@Model.ChipCPU</td></tr>
+                            <tr><th>Kết nối</th><td>@Model.Ketnoi</td></tr>
+                            <tr><th>RAM</th><td>@Model.RAM</td></tr>
+                            <tr><th>Dung lượng</th><td>@Model.Dungluong</td></tr>
+                            <tr><th>Thẻ SIM</th><td>@Model.Thesim</td></tr>
+                            <tr><th>Hãng sản xuất</th><td>@Model.Tenhangsx</td></tr>
+                            <tr><th>Hệ điều hành</th><td>@Model.Tenhedieuhanh</td></tr>
+                            <tr><th>Thông tin khác</th><td>@Model.Thongtinkhac</td></tr>
+                            <tr><th>Nhóm sản phẩm</th><td>@Model.NhomSanPham</td></tr>
+                            <tr><th>Loại sản phẩm</th><td>@Model.LoaiSanPham</td></tr>
+                        }
+                        else if (Model.LoaiSanPham != null && Model.LoaiSanPham.ToString().ToLowerInvariant().Contains("tablet"))
+                        { //Tablet
+                            <tr><th>Màn hình</th><td>@Model.Manhinh</td></tr>
+                            <tr><th>Camera</th><td>@Model.Camera</td></tr>
+                            <tr><th>Pin</th><td>@Model.Pin</td></tr>
+                            <tr><th>Chip CPU</th><td>@Model.ChipCPU</td></tr>
+                            <tr><th>Kết nối</th><td>@Model.Ketnoi</td></tr>
+                            <tr><th>RAM</th><td>@Model.RAM</td></tr>
+                            <tr><th>Dung lượng</th><td>@Model.Dungluong</td></tr>
+                            <tr><th>Hãng sản xuất</th><td>@Model.Tenhangsx</td></tr>
+                            <tr><th>Hệ điều hành</th><td>@Model.Tenhedieuhanh</td></tr>
+                            <tr><th>Thông tin khác</th><td>@Model.Thongtinkhac</td></tr>
+                            <tr><th>Nhóm sản phẩm</th><td>@Model.NhomSanPham</td></tr>
+                            <tr><th>Loại sản phẩm</th><td>@Model.LoaiSanPham</td></tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr><td colspan="2">Không có thông tin chi tiết phù hợp.</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function increaseQuantity() {
+        let quantityInput = document.getElementById('quantity');
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue < 99999) {
+            quantityInput.value = currentValue + 1;
+        }
+    }
+
+    function decreaseQuantity() {
+        let quantityInput = document.getElementById('quantity');
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+        }
+    }
+</script>

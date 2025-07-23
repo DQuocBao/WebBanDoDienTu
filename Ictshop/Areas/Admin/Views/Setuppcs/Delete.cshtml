@@ -1,0 +1,153 @@
+﻿@model Ictshop.Models.Sanpham
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xoá vĩnh viễn sản phẩm</h2>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.Tensp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tensp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Giatien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Giatien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Soluong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Soluong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sanphammoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sanphammoi)
+        </dd>       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anhbia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anhbia)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KichCo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KichCo)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Chatlieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chatlieu)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Trongluong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trongluong)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kichthuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kichthuoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MauSac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MauSac)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Tenhangsx)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tenhangsx)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.NhomSanPham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhomSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiSanPham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayThem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayThem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgaySua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgaySua)
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá sản phẩm" class="btn btn-warning" />
+        </div>
+    }
+</div>

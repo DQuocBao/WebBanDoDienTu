@@ -1,0 +1,152 @@
+﻿@model Ictshop.Models.Sanpham
+
+@{ ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; }
+
+<h2>Thông tin chi tiết</h2>
+
+<div>
+    <h4>Sản phẩm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tensp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tensp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Giatien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Giatien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Soluong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Soluong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sanphammoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sanphammoi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anhbia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anhbia)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tuongthich)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tuongthich)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiKetNoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiKetNoi)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CongSuat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CongSuat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.KichCo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KichCo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MauSac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MauSac)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Thongtinkhac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thongtinkhac)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tenhangsx)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tenhangsx)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NhomSanPham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhomSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiSanPham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayThem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayThem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgaySua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgaySua)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    <button class="btn btn-success">
+        @Html.ActionLink("Sửa sản phẩm", "Edit", new { id = Model.Masp }, new { @style = "color:white;" })
+    </button>
+</p>
+

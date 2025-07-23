@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Ictshop.Models.Chitietdonhang>
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var stt = 1;
+    var tongtien = Model.Sum(x => x.Thanhtien);
+}
+
+<style>
+    .order-container {
+        max-width: 900px;
+        margin: 40px auto;
+        background-color: #fff;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .total-row {
+        background-color: #f9f9f9;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .badge-vnd {
+        background-color: #28a745;
+        color: white;
+        font-size: 90%;
+    }
+</style>
+
+<div class="order-container">
+    <div class="order-title">🧾 Chi tiết đơn hàng</div>
+
+    <table class="table table-bordered table-hover text-center">
+        <thead class="thead-dark">
+            <tr class="table-primary">
+                <th>#</th>
+                <th>Sản phẩm</th>
+                <th>Loại Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.Sanpham.Tensp</td>
+                    <td>@item.Sanpham.LoaiSanPham</td>
+                    <td>@item.Soluong</td>
+                    <td>
+                        <span class="badge badge-vnd">@String.Format("{0:0,0}", item.Dongia) VNĐ</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-vnd">@String.Format("{0:0,0}", item.Thanhtien) VNĐ</span>
+                    </td>
+                </tr>
+                stt++;
+            }
+        </tbody>
+        <tfoot>
+            <tr class="total-row text-right">
+                <td colspan="5">Tổng cộng:</td>
+                <td>@String.Format("{0:0,0}", tongtien) VNĐ</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

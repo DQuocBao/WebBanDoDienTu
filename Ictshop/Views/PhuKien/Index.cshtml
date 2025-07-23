@@ -1,0 +1,254 @@
+﻿@model PagedList.IPagedList<Ictshop.Models.Sanpham>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Phụ kiện";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="spnoibat">
+    <h2 class="section-title">SẢN PHẨM NỔI BẬT</h2>
+    <div class="row">
+
+        <div class="col-md-4">
+            <img src="~/HinhanhSP/spnb1.png" class="img-responsive" alt="" />
+        </div>
+        <div class="col-md-4">
+            <img src="~/HinhanhSP/spnb2.png" class="img-responsive" alt="" />
+        </div>
+        <div class="col-md-4">
+            <img src="~/HinhanhSP/spnb3.png" class="img-responsive" alt="" />
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Tạo phong cách cho form tìm kiếm */
+    .search-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+        .search-form select,
+        .search-form input[type="text"],
+        .search-form input[type="number"],
+        .search-form button {
+            width: calc(50% - 10px);
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        .search-form button {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+            .search-form button:hover {
+                background-color: #0056b3;
+            }
+</style>
+
+<h2 class="section-title">TÌM KIẾM SẢN PHẨM</h2>
+<form action="@Url.Action("Search", "PhuKien")" method="get" class="search-form">
+    <input type="text" name="query" placeholder="Tìm sản phẩm..." />
+
+    <!-- Ô chọn Hãng (Mahang) -->
+    <select name="Mahang">
+        <option value="">Chọn hãng</option>
+        <option value="1">Sam Sung</option>
+        <option value="2">Apple</option>
+        <option value="3">Xiaomi</option>
+        <option value="4">Vsmart</option>
+        <option value="5">Bphone</option>
+        <option value="6">Realme</option>
+    </select>
+
+    <!-- Các tùy chọn khác -->
+    <input type="number" name="MinPrice" placeholder="Giá tối thiểu" />
+    <input type="number" name="MaxPrice" placeholder="Giá tối đa" />
+
+    <select name="PhanKhucGia">
+        <option value="">Chọn phân khúc giá</option>
+        <option value="re">Giá rẻ (Dưới 200 nghìn)</option>
+        <option value="phothong">Trung bình (200 - 500 nghìn)</option>
+        <option value="trungbinh">Trung bình (500 nghìn - 1.5 triệu)</option>
+        <option value="caocap">Cao cấp (1.5 - 5 triệu)</option>
+        <option value="sieu cao cap">Siêu cao cấp (Trên 5 triệu)</option>
+    </select>
+
+
+    <!-- Dropdown sắp xếp -->
+    <select name="SortOrder">
+        <option value="">Sắp xếp theo</option>
+        <option value="price-asc">Giá tăng dần</option>
+        <option value="price-desc">Giá giảm dần</option>
+        <option value="name-asc">Tên từ A-Z</option>
+        <option value="name-desc">Tên từ Z-A</option>
+        <option value="newest">Mới nhất</option>
+    </select>
+
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+
+
+
+<style>
+    .section-title {
+        text-align: left;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 30px 0;
+        text-transform: uppercase;
+        color: #333;
+        border-bottom: 2px solid #007bff;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+</style>
+
+<h2 class="section-title">DANH SÁCH SẢN PHẨM</h2>
+
+<div class="row">
+    @foreach (var sp in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="@Url.Content("~" + sp.Anhbia)" class="img-responsive" alt="@sp.Tensp" width="200" height="200" />
+                <div class="card-body">
+                    <h5 class="card-title">@sp.Tensp</h5>
+                    <p class="gia-san-pham"><strong>Giá: @String.Format("{0:N0}", sp.Giatien) VNĐ</strong></p>
+                    <p class="card-text">Thương hiệu: @sp.Tenhangsx</p>
+                    <p class="card-text">Loại sản phẩm: @sp.LoaiSanPham</p>
+                    <p class="card-text">Tương thích: @sp.Tuongthich</p>
+                    <a href="@Url.Action("Details", "PC", new { id = sp.Masp })" class="btn btn-primary">Xem chi tiết</a>
+                    <form action="@Url.Action("ThemGioHang", "GioHang")" method="post" style="display: inline-block; margin-left: 5px;">
+                        <input type="hidden" name="iMasp" value="@sp.Masp" />
+
+                        <input type="hidden" name="NhomSanPham" value="PhuKien" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <input type="hidden" name="strURL" value="@Request.Url.ToString()" />
+                        <button type="submit" class="btn btn-success">Mua hàng</button>
+                    </form>
+                    @*<a href="@Url.Action("ThemVaoWishlist", "Wishlist", new { productId = sp.Masp })"
+        class="btn btn-warning">Lưu sản phẩm</a>*@
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Hiển thị phân trang -->
+<div class="pagination-container">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+    {
+        Display = PagedListDisplayMode.IfNeeded,
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" },
+    })
+</div>
+
+
+<
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        margin-bottom: 30px; /* <-- thêm dòng này */
+    }
+
+    .col-md-4 {
+        margin-bottom: 30px; /* <-- thêm dòng này để tạo khoảng cách giữa hàng */
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .card-text {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .gia-san-pham {
+        font-weight: bold;
+        color: red;
+        font-size: 1.8rem; /* Áp dụng chung cho cả "Giá:" và số tiền */
+    }
+</style>
+
+<style>
+    .pagination-container ul {
+        display: inline-block;
+        padding: 0;
+    }
+
+    .pagination-container li {
+        display: inline;
+        padding: 5px 10px;
+    }
+
+        .pagination-container li a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin: 2px;
+        }
+
+            .pagination-container li a:hover {
+                background-color: #007bff;
+                color: #fff;
+            }
+</style>
+
+
+
+<script>
+    function toggleInput(field) {
+        var select = document.getElementById(field + "Select");
+        var input = document.getElementById(field + "Input");
+
+        if (select.value === "custom") {
+            input.style.display = "inline-block";  // Hiện input khi chọn "Khác"
+            input.focus();
+        } else {
+            input.style.display = "none";  // Ẩn input nếu chọn giá trị khác
+            input.value = select.value;    // Gán giá trị từ dropdown vào input
+        }
+    }
+</script>
+
+
+
+<style>
+    .search-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+    }
+</style>

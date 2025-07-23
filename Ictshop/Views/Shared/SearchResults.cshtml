@@ -1,0 +1,83 @@
+﻿@model PagedList.IPagedList<Ictshop.Models.Sanpham>
+@using PagedList.Mvc
+@using System.Web.Routing
+@using System.Web.Mvc
+
+@{
+    ViewBag.Title = "SearchResults";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="font-size: 28px; font-weight: bold;">Kết quả tìm kiếm</h2>
+
+@if (TempData["SearchQuery"] != null)
+{
+    <p style="font-size: 18px; font-weight: bold; color: #007bff;">
+        Tiêu chí tìm kiếm: @TempData["SearchQuery"]
+    </p>
+}
+
+@if (Model.Any())
+{
+    <p style="font-size: 20px; font-weight: bold; color: #28a745;">
+        Tổng số kết quả tìm thấy: @Model.TotalItemCount
+    </p>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Hãng sản xuất</th>
+                <th>Loại sản phẩm</th>
+                <th>Chi tiết</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("xemchitiet", "Sanpham", new { masp = item.Masp })" style="font-weight: bold;">
+                            @item.Tensp
+                        </a>
+                    </td>
+
+                    <td><strong>@String.Format("{0:0,0}", item.Giatien) VND</strong></td>
+                    <td>@item.Tenhangsx</td>
+                    <td>@(item.LoaiSanPham ?? "Không xác định")</td>
+                    <td>
+                        <a href="@Url.Action("xemchitiet", "Sanpham", new { masp = item.Masp })"
+                           class="btn btn-primary">
+                            Xem chi tiết
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p style="color: red; font-size: 25px; font-weight: bold;">
+        Không tìm thấy sản phẩm phù hợp với bộ lọc.
+    </p>
+}
+
+<!-- PHÂN TRANG -->
+<div class="pagination-container">
+    @Html.PagedListPager(Model, page => Url.Action("Search", ViewBag.ControllerName,
+        new RouteValueDictionary(ViewBag.SearchParams) { ["page"] = page }),
+        new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Always
+        })
+</div>
+
+<a href="@Url.Action("Index", ViewContext.RouteData.Values["controller"])"
+   class="btn btn-secondary">
+    Back to @ViewContext.RouteData.Values["controller"]
+</a>

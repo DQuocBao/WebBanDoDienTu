@@ -1,0 +1,356 @@
+﻿@{
+    ViewBag.Title = "ICT SHOP";
+
+}
+
+
+<br />
+<div class="row">
+    <div class="col-md-8">
+        @Html.Action("SlidePartial", "Home")
+    </div>
+    <div class="col-md-4">
+        <img src="~/HinhanhSP/qc3.gif" class="img-responsive" alt="" />
+    </div>
+</div>
+
+<div>
+    <img class="img-responsive" src="~/HinhanhSP/ban1.jpg" />
+</div>
+<br />
+<div class="spnoibat">
+    <div class="row">
+
+        <h3> SẢN PHẨM NỔI BẬT</h3>
+        <div class="col-md-4">
+            <img src="~/HinhanhSP/spnb1.png" class="img-responsive" alt="" />
+        </div>
+        <div class="col-md-4">
+            <img src="~/HinhanhSP/spnb2.png" class="img-responsive" alt="" />
+        </div>
+        <div class="col-md-4">
+            <img src="~/HinhanhSP/spnb3.png" class="img-responsive" alt="" />
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Tạo phong cách cho form tìm kiếm */
+    .search-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+        .search-form select,
+        .search-form input[type="text"],
+        .search-form input[type="number"],
+        .search-form button {
+            width: calc(50% - 10px);
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        .search-form button {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+            .search-form button:hover {
+                background-color: #0056b3;
+            }
+</style>
+
+<h3>TÌM KIẾM SẢN PHẨM</h3>
+<form action="@Url.Action("Search", "Home")" method="get" class="search-form">
+    <input type="text" name="query" placeholder="Tìm sản phẩm..." value="@ViewBag.SearchQuery" />
+
+    <!-- Ô chọn Hãng (Mahang) -->
+    <select name="Mahang">
+        <option value="">Chọn hãng</option>
+        <option value="1">Samsung</option>
+        <option value="2">Apple</option>
+        <option value="3">Xiaomi</option>
+        <option value="4">Vsmart</option>
+        <option value="5">Bphone</option>
+        <option value="6">OnePlus</option>
+        <option value="7">ASUS</option>
+        <option value="8">MSI</option>
+        <option value="9">Dell</option>
+        <option value="10">Lenovo</option>
+        <option value="13">Không có</option>
+    </select>
+
+    <!-- Ô chọn Hệ điều hành (Mahdh) -->
+    <select name="Mahdh">
+        <option value="">Chọn hệ điều hành</option>
+        <option value="1">Android - Phone/Tablet</option>
+        <option value="2">iOS - Phone/Tablet</option>
+        <option value="8">iPadOS - Ipad</option>
+        <option value="3">VOS - Phone/Tablet</option>
+        <option value="4">Windows - Laptop/PC</option>
+        <option value="5">MacOS - Laptop/PC</option>
+        <option value="6">Linux - Laptop/PC</option>
+        <option value="7">Không có- None</option>
+    </select>
+
+    <!-- Các tùy chọn khác -->
+    <input type="number" name="MinPrice" placeholder="Giá tối thiểu" />
+    <input type="number" name="MaxPrice" placeholder="Giá tối đa" />
+
+    <select name="PhanKhucGia">
+        <option value="">Chọn phân khúc giá</option>
+        <option value="re">Giá rẻ (Dưới 3 triệu)</option>
+        <option value="phothong">Phổ thông (3 - 7 triệu)</option>
+        <option value="trungbinh">Trung bình (7 - 15 triệu)</option>
+        <option value="caocap">Cao cấp (15 - 25 triệu)</option>
+        <option value="sieu cao cap">Siêu cao cấp (Trên 25 triệu)</option>
+    </select>
+
+    <select name="Thesim">
+        <option value="">Chọn loại SIM- Phone/Tablet</option>
+        <option value="1">Single SIM</option>
+        <option value="2">Dual SIM</option>
+    </select>
+
+    @*<select name="Chip">
+            <option value="">Chọn hãng Chipset(Bộ vi xử lý) - Phone/Tablet</option>
+            <option value="Qualcomm">Qualcomm</option>
+            <option value="MediaTek">MediaTek</option>
+            <option value="Apple">Apple</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Google">Google</option>
+            <option value="Unisoc">Unisoc</option>
+        </select>
+
+        <select name="CPU">
+            <option value="">Chọn hãng CPU - Laptop/PC</option>
+            <option value="Intel">Intel</option>
+            <option value="AMD">AMD</option>
+            <option value="Apple">Apple</option>
+        </select>
+
+        <select name="GPUVGA">
+            <option value="">Chọn hãng GPU, VGA - Laptop/PC</option>
+            <option value="Intel">Intel</option>
+            <option value="AMD">AMD</option>
+            <option value="NVIDIA">NVIDIA</option>
+        </select>*@
+
+    <select id="RamSelect" name="Ram" onchange="toggleInput('Ram')">
+        <option value="">Chọn RAM</option>
+        <option value="2GB">2 GB</option>
+        <option value="4GB">4 GB</option>
+        <option value="6GB">6 GB</option>
+        <option value="8GB">8 GB</option>
+        <option value="12GB">12 GB</option>
+        <option value="16GB">16 GB</option>
+        <option value="24GB">24 GB</option>
+        <option value="32GB">32 GB</option>
+        <option value="64GB">64 GB</option>
+        <option value="128GB">128 GB</option>
+        <option value="256GB">256 GB</option>
+        <option value="custom">Khác...</option>
+    </select>
+    <input type="text" id="RamInput" name="Ram" style="display:none;" placeholder="Nhập dung lượng (VD: 330GB)">
+
+
+    <select id="BonhotrongSelect" name="Bonhotrong" onchange="toggleInput('Bonhotrong')">
+        <option value="">Chọn bộ nhớ trong/Dung Lượng Ổ Cứng</option>
+        <option value="8GB">8 GB</option>
+        <option value="16GB">16 GB</option>
+        <option value="32GB">32 GB</option>
+        <option value="64GB">64 GB</option>
+        <option value="128GB">128 GB</option>
+        <option value="256GB">256 GB</option>
+        <option value="512GB">512 GB</option>
+        <option value="1TB">1 TB</option>
+        <option value="2TB">2 TB</option>
+        <option value="4TB">4 TB</option>
+        <option value="8TB">8 TB</option>
+        <option value="10TB">10 TB</option>
+        <option value="custom">Khác...</option>
+    </select>
+    <input type="text" id="BonhotrongInput" name="Bonhotrong" style="display:none;" placeholder="Nhập dung lượng (VD: 330GB)">
+
+    @*<select name="battery_capacity">
+            <option value="">Chọn dung lượng pin</option>
+            <optgroup label="📱 Điện thoại">
+                <option value="2000">≥ 2000 mAh</option>
+                <option value="3000">≥ 3000 mAh</option>
+                <option value="4000">≥ 4000 mAh - smartphone phổ thông</option>
+                <option value="5000">≥ 5000 mAh - phổ biến smartphone hiện nay</option>
+                <option value="6000">≥ 6000 mAh</option>
+                <option value="7000">≥ 7000 mAh - gaming phone</option>
+            </optgroup>
+            <optgroup label="📟 Tablet">
+                <option value="4000">≥ 4000 mAh</option>
+                <option value="5000">≥ 5000 mAh</option>
+                <option value="6000">≥ 6000 mAh</option>
+                <option value="7000">≥ 7000 mAh</option>
+                <option value="8000">≥ 8000 mAh</option>
+                <option value="9000">≥ 9000 mAh</option>
+                <option value="10000">≥ 10000 mAh</option>
+            </optgroup>
+            <optgroup label="💻 Laptop">
+                <option value="30wh">≥ 30 Wh</option>
+                <option value="40wh">≥ 40 Wh</option>
+                <option value="50wh">≥ 50 Wh - laptop văn phòng phổ biến</option>
+                <option value="60wh">≥ 60 Wh - laptop cao cấp, MacBook</option>
+                <option value="70wh">≥ 70 Wh</option>
+                <option value="80wh">≥ 80 Wh - laptop gaming, đồ họa</option>
+                <option value="90wh">≥ 90 Wh</option>
+                <option value="100wh">≥ 100 Wh</option>
+            </optgroup>
+        </select>
+
+        <select name="screen_size">
+            <option value="">Chọn kích thước màn hình</option>
+            <optgroup label="📱 Điện thoại">
+                <option value="4.0">≥ 4.0 inches</option>
+                <option value="4.7">≥ 4.7 inches - máy nhỏ</option>
+                <option value="5.0">≥ 5.0 inches</option>
+                <option value="5.5">≥ 5.5 inches - iphone đời cũ</option>
+                <option value="6.0">≥ 6.0 inches - chuẩn mới hiện nay</option>
+                <option value="6.5">≥ 6.5 inches - màn hình to</option>
+                <option value="7.0">≥ 7.0 inches - gaming phone</option>
+            </optgroup>
+            <optgroup label="📟 Tablet">
+                <option value="7.0">≥ 7.0 inches - mini tablet</option>
+                <option value="8.0">≥ 8.0 inches</option>
+                <option value="9.7">≥ 9.7 inches - iPad truyền thống</option>
+                <option value="10.5">≥ 10.5 inches - iPad Air</option>
+                <option value="11.0">≥ 11.0 inches - iPad Pro tiêu chuẩn</option>
+                <option value="12.9">≥ 12.9 inches - iPad Pro cỡ lớn</option>
+                <option value="14.6">≥ 14.6 inches</option>
+            </optgroup>
+            <optgroup label="💻 Laptop">
+                <option value="11.6">≥ 11.6 inches - Ultrabook</option>
+                <option value="13.3">≥ 13.3 inches - Macbook</option>
+                <option value="14.0">≥ 14.0 inches - Laptop văn phòng</option>
+                <option value="15.6">≥ 15.6 inches - Laptop phổ biến, gaming</option>
+                <option value="16.0">≥ 16.0 inches - Macbook Pro</option>
+                <option value="17.3">≥ 17.3 inches</option>
+            </optgroup>
+        </select>*@
+
+    <select name="NhomSanPham">
+        <option value="">Chọn nhóm sản phẩm</option>
+        <option value="Phone">Điện thoại</option>
+        <option value="Tablet">Tablet</option>
+        <option value="Laptop">Laptop</option>
+        <option value="PC">PC</option>
+        <option value="PhuKien">Phụ kiện, Sản phẩm hỗ trợ</option>
+        <option value="SetupPC">Dụng cụ, setup PC</option>
+    </select>
+
+    <!-- Dropdown sắp xếp -->
+    <select name="SortOrder">
+        <option value="">Sắp xếp theo</option>
+        <option value="price-asc">Giá tăng dần</option>
+        <option value="price-desc">Giá giảm dần</option>
+        <option value="name-asc">Tên từ A-Z</option>
+        <option value="name-desc">Tên từ Z-A</option>
+        <option value="newest">Mới nhất</option>
+        <option value="oldest">Cũ nhất</option>
+    </select>
+
+    @*<button type="button" id="resetFilters">Xóa bộ lọc</button>*@
+
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+
+<div class="danhmuc">
+    @Html.Action("DanhmucPartial", "Danhmuc")
+</div>
+<div class="dt">
+
+    @Html.Action("dtiphonePartial", "Sanpham")
+</div>
+<div class="dt">
+
+    @Html.Action("dtsamsungpartial", "Sanpham")
+</div>
+
+<div class="dt">
+
+    @Html.Action("dtxiaomipartial", "Sanpham")
+</div>
+
+<div class="row custom-row-index">
+    <h2> Tin tức sản phẩm</h2>
+    <div class="col-md-8 news-video">
+        <h3 style="margin-bottom:10px">Video sản phẩm mới</h3>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/3hPoEmlBQdY" frameborder="0" allowfullscreen></iframe>
+
+
+    </div>
+    <div class="col-md-4 news-content">
+        <h3>Tin tức mới nhất</h3>
+        <ul>
+            <li><a href="#">Bí quyết chọn mua điện thoại phù hợp</a></li>
+            <li><a href="#">Top 10 điện thoại hot nhất năm</a></li>
+            <li><a href="#">Cách chăm sóc pin cho điện thoại di động</a></li>
+            <li><a href="#">Những tính năng mới trên điện thoại thông minh</a></li>
+            <li><a href="#">Làm thế nào để bảo vệ dữ liệu cá nhân trên điện thoại</a></li>
+            <li><a href="#">Các ứng dụng hữu ích cho điện thoại di động</a></li>
+            <li><a href="#">Tư vấn cách chọn mua phụ kiện điện thoại phù hợp</a></li>
+            <li><a href="#">Cách sử dụng camera điện thoại để chụp ảnh chất lượng cao</a></li>
+            <li><a href="#">Khắc phục các vấn đề thường gặp trên điện thoại</a></li>
+            <li><a href="#">Làm thế nào để tăng tuổi thọ pin cho điện thoại</a></li>
+        </ul>
+    </div>
+</div>
+<style>
+    .custom-row-index {
+        margin: 10px auto;
+    }
+
+    .class-h3 {
+        color: white;
+        font-size: 30px;
+        font-weight: 700;
+        margin-top: 23px;
+        margin-left: 13px;
+        padding-top: 13px;
+    }
+</style>
+
+
+
+<script>
+    function toggleInput(field) {
+        var select = document.getElementById(field + "Select");
+        var input = document.getElementById(field + "Input");
+
+        if (select.value === "custom") {
+            input.style.display = "inline-block";  // Hiện input khi chọn "Khác"
+            input.focus();
+        } else {
+            input.style.display = "none";  // Ẩn input nếu chọn giá trị khác
+            input.value = select.value;    // Gán giá trị từ dropdown vào input
+        }
+    }
+</script>
+
+
+
+<style>
+    .search-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+    }
+</style>
+

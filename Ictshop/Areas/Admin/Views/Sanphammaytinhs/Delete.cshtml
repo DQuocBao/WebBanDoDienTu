@@ -1,0 +1,254 @@
+﻿@model Ictshop.Models.Sanpham
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xoá vĩnh viễn sản phẩm</h2>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Hangsanxuat.Tenhang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hangsanxuat.Tenhang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hedieuhanh.Tenhdh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hedieuhanh.Tenhdh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tensp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tensp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Giatien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Giatien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Soluong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Soluong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RAM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RAM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dungluong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dungluong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sanphammoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sanphammoi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anhbia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anhbia)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChipCPU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChipCPU)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GPU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GPU)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ketnoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ketnoi)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Manhinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manhinh)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Camera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Camera)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.Trongluong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trongluong)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kichthuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kichthuoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mainboard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mainboard)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nguon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nguon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tannhiet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tannhiet)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.SocketPC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SocketPC)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiCase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiCase)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Thongtinkhac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thongtinkhac)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tenhangsx)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tenhangsx)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tenhedieuhanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tenhedieuhanh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NhomSanPham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhomSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiSanPham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayThem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayThem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgaySua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgaySua)
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá sản phẩm" class="btn btn-warning" />
+        </div>
+    }
+</div>
